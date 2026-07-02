@@ -1,4 +1,4 @@
-## 🎂 CakeLetter - Birthday Web Template Marketplace
+# 🎂 CakeLetter - Birthday Web Template Marketplace
 
 CakeLetter adalah platform katalog digital interaktif bergaya **Neo-Brutalism / Pixel-Retro** yang menyediakan berbagai template website ucapan ulang tahun premium. Aplikasi ini dirancang untuk memudahkan pengguna memilih, melihat pratinjau (*live preview*), dan memesan kustomisasi website ucapan ulang tahun digital secara instan.
 
@@ -42,4 +42,4 @@ Proyek ini menggunakan struktur file tunggal (*flat-structure*) yang bersih:
 3. Buka file index.html langsung di browser, atau jalankan menggunakan ekstensi Live Server di VS Code.
 
 ---
-Made with 🩵, by [@destiaanana](https://github.com/destiaanana)
+Dibuat dengan ☕ oleh [@destiaanana](https://github.com/destiaanana/software-prototypes/commits?author=destiaanana.com)

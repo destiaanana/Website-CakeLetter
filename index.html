@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CakeLetter — Send a Digital Core Memory</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Barlow+Condensed:ital,wght@0,400;0,700;1,400;1,700&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- --- STICKY NAVBAR (SINGLE) --- -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🎂</span>
+                <span class="logo-text">CakeLetter</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#catalogue">Template</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#how-it-works">How To Order</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#donate" class="nav-donate">Support Us</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌙</button></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- --- FLOATING CART BUTTON --- -->
+    <div class="saved-float-btn" id="savedFloatBtn" onclick="toggleSavedDrawer()">
+        <span>🛒</span>
+        <span class="saved-count" id="savedCount">0</span>
+    </div>
+
+    <!-- --- SAVED DRAWER --- -->
+    <div class="saved-drawer" id="savedDrawer">
+        <div class="saved-header">
+            <h3>🛒 Cart</h3>
+            <button class="close-saved" onclick="toggleSavedDrawer()">&times;</button>
+        </div>
+        <div class="saved-list" id="savedList">
+            <p class="empty-saved">No templates in cart yet!</p>
+        </div>
+        <div class="saved-footer" id="savedFooter" style="display: none;">
+            <div class="saved-total">
+                <span>Total:</span>
+                <span id="savedTotalPrice">Rp 0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkoutOrder()">Checkout via WhatsApp 💬</button>
+        </div>
+    </div>
+
+    <!-- --- TOAST NOTIFICATION --- -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <svg viewBox="0 0 52 52" class="checkmark">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <div class="notification-content">
+            <h4>Notice</h4>
+            <p id="notifMessage">Template added to cart!</p>
+        </div>
+    </div>
+
+    <!-- --- HERO SECTION --- -->
+<section class="hero reveal-section" id="home">
+    <div class="hero-grid-bg"></div>
+
+    <!-- Floating shapes: LANGSUNG di hero, bukan di dalam illustration -->
+    <div class="floating-shapes">
+        <div class="shape shape-1">💝</div>
+        <div class="shape shape-2">🎂</div>
+        <div class="shape shape-3">✨</div>
+        <div class="shape shape-4">💌</div>
+        <div class="shape shape-5">🎈</div>
+    </div>
+
+    <div class="hero-content">
+        <p class="hero-eyebrow">hello! &amp; welcome to</p>
+        <h1 class="hero-title">CakeLetter</h1>
+        <p class="hero-subtitle">Stop giving boring physical cards that end up in the trash. Send a digital core memory instead!</p>
+        <button class="cta-button" onclick="scrollToSection('catalogue')">See Template</button>
+    </div>
+
+    <!-- hero-illustration tetap ada tapi kosong, hanya sebagai spacer layout desktop -->
+    <div class="hero-illustration-spacer"></div>
+
+    <div class="hero-marquee-bar">
+        <div class="marquee-track">
+            <span>CREATE YOUR ABSOLUTE DREAM WISH WEBSITE</span>
+            <span>✦</span>
+            <span>ZERO LIMITS ON YOUR CREATIVITY</span>
+            <span>✦</span>
+            <span>CREATE YOUR ABSOLUTE DREAM WISH WEBSITE</span>
+            <span>✦</span>
+            <span>ZERO LIMITS ON YOUR CREATIVITY</span>
+            <span>✦</span>
+            <span>CREATE YOUR ABSOLUTE DREAM WISH WEBSITE</span>
+            <span>✦</span>
+            <span>ZERO LIMITS ON YOUR CREATIVITY</span>
+            <span>✦</span>
+        </div>
+    </div>
+</section>
+
+    <!-- --- TEMPLATE SECTION --- -->
+    <section class="catalogue reveal-section" id="catalogue">
+        <div class="section-header">
+            <h2 class="section-title-pixel">Template</h2>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all" onclick="filterTemplates('all')">All</button>
+            <button class="filter-btn" data-filter="minimalist" onclick="filterTemplates('minimalist')">Minimalist</button>
+            <button class="filter-btn" data-filter="cute" onclick="filterTemplates('cute')">Cute</button>
+            <button class="filter-btn" data-filter="romance" onclick="filterTemplates('romance')">Romance</button>
+        </div>
+
+        <div class="template-grid" id="templateGrid"></div>
+    </section>
+
+    <!-- --- WHY US SECTION --- -->
+    <section class="why-us reveal-section" id="why-us">
+        <div class="why-us-inner">
+            <div class="why-us-text">
+                <h2 class="section-title-condensed">Why Choose<br>CakeLetter?</h2>
+                <ul class="why-list">
+                    <li>
+                        <span class="why-tag">FAST</span>
+                        Done in just 1–2 days. While others make you wait for weeks, we get your web ready to share before your vibe even changes.
+                    </li>
+                    <li>
+                        <span class="why-tag">AFFORDABLE</span>
+                        Starting from just 25k! It costs less than your daily iced coffee but gives 100x more emotional damage (the good kind).
+                    </li>
+                    <li>
+                        <span class="why-tag">CUSTOM</span>
+                        Colors, photos, music, texts — you name it, we change it. No boring templates here. Total freedom to match their exact aesthetic.
+                    </li>
+                    <li>
+                        <span class="why-tag">RESPONSIVE</span>
+                        Looks stunning on phones, tablets, or laptops. Zero clunky layouts, just pure satisfaction. It's giving premium.
+                    </li>
+                    <li>
+                        <span class="why-tag">EASY LINK</span>
+                        Forget dealing with complicated hosting or coding nonsense. We hand over a ready-to-share link — just copy, paste, and watch them cry happy tears.
+                    </li>
+                    <li>
+                        <span class="why-tag">FREE REVISIONS</span>
+                        Typo? Wrong color? Don't panic. Minor revisions are completely free until you say "yeah, this is perfect."
+                    </li>
+                </ul>
+            </div>
+            <div class="why-us-deco">
+                <div class="deco-sticker deco-fragile">📦 FRAGILE</div>
+                <div class="deco-photo-frame">
+                    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExam1tMWJmMTZ1ZW9vcjhpdm9mbWpseWd4MW1hd3pqdGNzZjRzNjZvbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QtZSl6mcqfmvCBI2cb/giphy.gif" alt="Preview deco">
+                </div>
+                <div class="deco-sticker deco-heart">💌 HANDLE WITH CARE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- HOW TO ORDER SECTION --- -->
+    <section class="how-it-works reveal-section" id="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title-condensed">How To Order<br><em>(Steps)</em></h2>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">👆</div>
+                <h3>Pick Your Base</h3>
+                <p>Scroll through our catalog and choose the layout that screams them.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">📝</div>
+                <h3>Fill The Form</h3>
+                <p>Drop the details, and pick your custom soundtrack.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">💳</div>
+                <h3>Secure Payment</h3>
+                <p>Smooth transaction via QRIS, E-Wallets, or Bank Transfer. Quick and safe.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">🎉</div>
+                <h3>Get Live URL!</h3>
+                <p>Boom! Your custom link is live and ready to absolutely blow their mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- GALLERY SECTION --- -->
+    <section class="gallery reveal-section" id="gallery">
+        <div class="section-header">
+            <h2 class="section-title-condensed">Client Spotlight</h2>
+            <p class="section-subtitle">A sneak peek of the masterpieces we've cooked up. Real identities are tightly gatekept!</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://media.giphy.com/media/26AHONQ79FdWZhAIw/giphy.gif" alt="Gallery 1" loading="lazy">
+                <div class="gallery-overlay">Romantic Theme Project</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="Gallery 2" loading="lazy">
+                <div class="gallery-overlay">Soft Pastel Project</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://media.giphy.com/media/xT0xeJpnrWC4XWblWQ/giphy.gif" alt="Gallery 3" loading="lazy">
+                <div class="gallery-overlay">Minimalist Clean Project</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- FAQ SECTION --- -->
+    <section class="faq reveal-section" id="faq">
+        <div class="section-header">
+            <h2 class="section-title-condensed">Spilling The Answers<br><em>(FAQ)</em></h2>
+            <p class="section-subtitle">Everything you need to know before you slide into our DMs.</p>
+        </div>
+
+        <div class="faq-layout">
+            <div class="faq-col">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I order? Is it complicated?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>It's incredibly easy. Just click on any template you vibe with, fill out the quick request form on the right, and hit "Send Order via WhatsApp". Our script auto-formats everything perfectly for our admin. Zero stress!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What if I'm tight on a budget?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Just slide into our WhatsApp! Let's negotiate and cook up something special that perfectly aligns with your pocket :3</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I request a custom design from scratch?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely! If you have a specific mood board or Figma design in mind, let's talk. Since we have to write code from a blank canvas, pricing starts from 75k depending on how complex it gets.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I ask for changes if it doesn't fit my vibe?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Of course! Minor tweaks (swapping pictures, correcting text typos, tuning colors) are completely free. If you want a massive structural revamp or want to shift to a whole new template mid-project, minor fees might apply. But don't worry, we always discuss it first.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-col">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How fast will it be ready?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Usually takes 1–2 business days max depending on the queue. If your requests are pretty straightforward, we might even speedrun it faster. We'll update you with an exact ETA in our chat.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>When are your DMs open?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our operational window is 07:00 – 20:00 WIB. If you text us late at night, we'll answer first thing in the morning. Rest assured, your order queues are kept moving safely!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What do I actually receive?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We'll send you a live web link (e.g. yourname.netlify.app) — you can even request a custom name for the link. Just open it in any browser and share away. No downloads, no deploying, we handle everything!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- ABOUT SECTION --- -->
+    <section class="about reveal-section" id="about">
+        <div class="about-inner">
+            <div class="about-text">
+                <h2 class="section-title-condensed">Our Story<br><em>(The Lore)</em></h2>
+                <div class="about-lore-block">
+                    <h4>HOW IT STARTED</h4>
+                    <p>Honestly? We were tired of seeing boring, generic gifts. We loved crafting cute, interactive miniature spaces on the web for anniversaries, birthdays, or just to make someone's day a whole lot better. It started as a personal flex for friends, but everyone loved it so much. Thus, CakeLetter was born to make digital core memory gifts accessible to everyone.</p>
+                </div>
+                <div class="about-cta-strip">
+                    <p>Ready to create a digital core memory? Stop overthinking before the moment passes. Order now and lock down the title of <strong>"Best Gift Giver of the Year"</strong></p>
+                    <button class="cta-button" onclick="scrollToSection('catalogue')">Order Now 🎂</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- --- DONATE SECTION --- -->
+    <section class="donate-section reveal-section" id="donate">
+        <div class="donate-container">
+            <div class="donate-icon">🚀</div>
+            <h2 class="section-title-condensed">Support CakeLetter!</h2>
+            <p>We're currently running on a free Netlify subdomain. Your support helps us get a proper custom domain (.com / .id) and keep this thing alive and growing!</p>
+            <a href="https://saweria.co/CakeLetter" target="_blank" class="cta-button large donate-btn">☕ Support via Saweria</a>
+        </div>
+    </section>
+
+    <!-- --- CTA SECTION --- -->
+    <section class="cta-section reveal-section">
+        <div class="cta-box">
+            <h2 class="section-title-condensed">Ready to Make a Special Moment?</h2>
+            <p>Don't wait until it's too late! Order now and make your person smile</p>
+            <button class="cta-button large" onclick="scrollToSection('catalogue')">Pick a Template Now</button>
+        </div>
+    </section>
+
+    <!-- --- FOOTER --- -->
+    <footer class="site-footer">
+        <p>© 2025 CakeLetter — Made with 💖 for the ones who care a little too much.</p>
+    </footer>
+
+    <!-- --- MODAL --- -->
+    <div class="modal" id="templateModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <div class="modal-badges">
+                    <span class="badge" id="modalCategory"></span>
+                    <span class="badge new-badge">✨ New</span>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-grid-layout">
+                    <!-- LEFT: Preview + Actions -->
+                    <div class="modal-left">
+                        <div class="video-preview" id="videoPreview"></div>
+                        <p class="preview-note">* This is a preview. Your version will be fully customized!</p>
+                        <div class="action-buttons-row">
+                            <a class="demo-btn" id="liveDemoBtn" href="#" target="_blank">🔗 Live Demo</a>
+                            <button class="add-cart-btn" id="addCartBtn" onclick="addToCart()">🛒 Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Details + Form -->
+                    <div class="modal-right">
+                        <div class="detail-section">
+                            <h3>About This Template</h3>
+                            <p id="modalDesc"></p>
+                            <div class="modal-price-tag" id="modalPrice"></div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>✨ What's Included</h3>
+                            <ul id="modalFeatures"></ul>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>🎨 What You Can Customize</h3>
+                            <ul id="modalCustomizable"></ul>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>🎨 Color Palette</h3>
+                            <div class="color-preview" id="modalColors"></div>
+                        </div>
+
+                        <!-- Interactive Order Form -->
+                        <div class="interactive-form-container">
+                            <h3>📋 Quick Order Form</h3>
+                            <p class="form-subtitle">Fill this out and we'll format your order perfectly for our admin!</p>
+
+                            <div class="form-group">
+                                <label for="orderName">Recipient's Name / Your Person* <span style="color:var(--primary)">★</span></label>
+                                <input type="text" id="orderName" placeholder="e.g. Hana, my bestie Rina...">
+                            </div>
+                            <div class="form-group">
+                                <label for="orderColor">Color Request (optional)</label>
+                                <input type="text" id="orderColor" placeholder="e.g. pastel blue, dark red...">
+                            </div>
+                            <div class="form-group">
+                                <label for="orderSong">Song Request (optional)</label>
+                                <input type="text" id="orderSong" placeholder="e.g. Lover - Taylor Swift">
+                            </div>
+                            <div class="form-group">
+                                <label for="orderMessage">Special Message / Notes (optional)</label>
+                                <textarea id="orderMessage" rows="3" placeholder="Write your heartfelt message here..."></textarea>
+                            </div>
+
+                            <button class="whatsapp-btn full-width" onclick="submitInteractiveForm()">
+                                💬 Send Order via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
