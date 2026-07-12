@@ -6,8 +6,8 @@ Proyek ini dibuat menggunakan arsitektur frontend statis (*flat-structure*) yang
 
 ---
 
-## Live Website 
-[CakeLetter](https://cakeletter.netlify.app/)
+## 🔗 Live Website 
+* [CakeLetter](https://cakeletter.netlify.app/)
 
 ---
 
